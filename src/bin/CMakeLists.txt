@@ -254,8 +254,16 @@ include(GNUInstallDirs)
 
 file(GLOB PUBLIC_HEADERS "../inc/*.h" "../inc/*.hpp")
 
+if(QUIC_TLS STREQUAL "openssl" OR  QUIC_TLS STREQUAL "openssl3")
+    set(OTHER_TARGETS OpenSSL OpenSSLQuic)
+endif()
+
+if(WIN32)
+    list(APPEND OTHER_TARGETS MsQuicEtw_Header)
+endif()
+
 if(BUILD_SHARED_LIBS)
-  install(TARGETS msquic EXPORT msquic DESTINATION lib)
+  install(TARGETS msquic platform inc logging_inc warnings main_binary_link_args ${OTHER_TARGETS} EXPORT msquic DESTINATION lib)
 else()
   install(FILES ${QUIC_STATIC_LIBRARY} DESTINATION lib)
 endif()
