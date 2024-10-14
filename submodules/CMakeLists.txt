@@ -157,9 +157,9 @@ if (WIN32)
     target_include_directories(
         OpenSSLQuic
         INTERFACE
-        $<BUILD_INTERFACE:$<$<CONFIG:Debug>:${OPENSSL_DIR}/debug/include>
-        $<$<NOT:$<CONFIG:Debug>>:${OPENSSL_DIR}/release/include>>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+            $<BUILD_INTERFACE:$<$<CONFIG:Debug>:${OPENSSL_DIR}/debug/include>
+            $<$<NOT:$<CONFIG:Debug>>:${OPENSSL_DIR}/release/include>>
+            $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
     )
     target_link_libraries(
         OpenSSLQuic
