@@ -328,7 +328,8 @@ else()
     target_include_directories(
         OpenSSLQuic
         INTERFACE
-        ${OPENSSL_DIR}/include
+        $<BUILD_INTERFACE:${OPENSSL_DIR}/include>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
     )
 
     target_link_libraries(
