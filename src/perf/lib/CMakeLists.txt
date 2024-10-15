@@ -16,9 +16,7 @@ target_link_libraries(perflib PUBLIC)
 
 target_link_libraries(perflib PRIVATE inc warnings)
 
-target_include_directories(perflib PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
-    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+target_include_directories(perflib PUBLIC ${CMAKE_CURRENT_LIST_DIR})
 
 if(MSVC)
     target_compile_options(perflib PUBLIC /wd4459)

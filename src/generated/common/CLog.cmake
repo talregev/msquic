@@ -52,24 +52,16 @@ function(CLOG_GENERATE_TARGET)
         target_compile_definitions("${library}.provider" PRIVATE BUILDING_TRACEPOINT_PROVIDER)
         set_property(TARGET "${library}.provider" PROPERTY POSITION_INDEPENDENT_CODE ON)
 
-        target_include_directories("${library}.provider" PUBLIC 
-            $<BUILD_INTERFACE:${CLOG_INCLUDE_DIRECTORY}> 
-            $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
-        target_include_directories("${library}.provider" PUBLIC
-            $<BUILD_INTERFACE:${CMAKE_CLOG_OUTPUT_DIRECTORY}/${library}> 
-            $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+        target_include_directories("${library}.provider" PUBLIC $<BUILD_INTERFACE:${CLOG_INCLUDE_DIRECTORY}>)
+        target_include_directories("${library}.provider" PUBLIC $<BUILD_INTERFACE:${CMAKE_CLOG_OUTPUT_DIRECTORY}/${library}>)
     else()
         add_library(${library} ${library_type} ${clogfiles})
         add_library("${library}.provider" INTERFACE)
     endif()
 
     target_link_libraries(${library} PUBLIC ${CMAKE_DL_LIBS})
-    target_include_directories(${library} PUBLIC 
-        $<BUILD_INTERFACE:${CLOG_INCLUDE_DIRECTORY}>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
-    target_include_directories(${library} PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CLOG_OUTPUT_DIRECTORY}/${library}>
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+    target_include_directories(${library} PUBLIC $<BUILD_INTERFACE:${CLOG_INCLUDE_DIRECTORY}>)
+    target_include_directories(${library} PUBLIC $<BUILD_INTERFACE:${CMAKE_CLOG_OUTPUT_DIRECTORY}/${library}>)
 
     # message(STATUS "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
 endfunction()
