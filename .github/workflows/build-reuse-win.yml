@@ -88,7 +88,7 @@ jobs:
       run: |
         scripts/build.ps1 -Config ${{ inputs.config }} -Platform ${{ inputs.plat }} -Arch ${{ inputs.arch }} -Tls ${{ inputs.tls }} -DisablePerf -DynamicCRT ${{ inputs.sanitize }}
         echo ================
-        echo %CD%
+        ($pwd).path
         echo ================
         cmake src/platform/unittest/external -B build
         cmake --build build
