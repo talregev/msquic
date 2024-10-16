@@ -88,8 +88,9 @@ jobs:
       run: |
         scripts/build.ps1 -Config ${{ inputs.config }} -Platform ${{ inputs.plat }} -Arch ${{ inputs.arch }} -Tls ${{ inputs.tls }} -DisablePerf -DynamicCRT ${{ inputs.sanitize }}
         echo ================
-        cd
-        cmake src/platform/unittest/external -B build -DCMAKE_INSTALL_PREFIX=D:/a/msquic/msquic/artifacts
+        echo %CD%
+        echo ================
+        cmake src/platform/unittest/external -B build
         cmake --build build
         cmake --install build
     - name: Build For Perf
