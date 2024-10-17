@@ -17,7 +17,7 @@ include(FetchContent)
 set(OTHER_TERGETS "")
 
 if(QUIC_TLS STREQUAL "openssl" OR  QUIC_TLS STREQUAL "openssl3")
-    add_library(OpenSSL INTERFACE)
+    # add_library(OpenSSL INTERFACE)
 
     FetchContent_Declare(
         OpenSSLQuic
@@ -56,4 +56,3 @@ add_executable(msquicplatformtest ${SOURCES})
 target_include_directories(msquicplatformtest PRIVATE ${CMAKE_INSTALL_PREFIX}/include)
 target_link_libraries(msquicplatformtest PRIVATE msquic ${MSPLATFORM_LIBRARIES} ${OTHER_TERGETS} gtest ws2_32 schannel ntdll bcrypt ncrypt crypt32 iphlpapi advapi32 secur32 userenv onecore winmm clang_rt.asan_dbg_dynamic-x86_64 clang_rt.asan_dynamic-x86_64)
 target_compile_definitions(msquicplatformtest PRIVATE QUIC_EVENTS_STUB QUIC_LOGS_STUB _DISABLE_VECTOR_ANNOTATION _DISABLE_STRING_ANNOTATION)
-target_compile_options(msquicplatformtest PRIVATE /fsanitize=unsigned-integer-overflow)
