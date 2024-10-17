@@ -17,11 +17,11 @@ include(FetchContent)
 set(OTHER_TERGETS "")
 
 if(QUIC_TLS STREQUAL "openssl" OR  QUIC_TLS STREQUAL "openssl3")
-    # add_library(OpenSSL INTERFACE)
+    add_library(OpenSSL INTERFACE)
 
     FetchContent_Declare(
         OpenSSLQuic
-        SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/submodules
+        SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../../../submodules
         CMAKE_ARGS "-DQUIC_USE_SYSTEM_LIBCRYPTO=${QUIC_USE_SYSTEM_LIBCRYPTO}"
     )
     FetchContent_MakeAvailable(OpenSSLQuic)
