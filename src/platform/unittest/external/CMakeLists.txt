@@ -17,7 +17,7 @@ include(FetchContent)
 set(OTHER_TERGETS "")
 
 if(QUIC_TLS STREQUAL "openssl" OR  QUIC_TLS STREQUAL "openssl3")
-    add_library(OpenSSL INTERFACE)
+    # add_library(OpenSSL INTERFACE)
 
     FetchContent_Declare(
         OpenSSLQuic
