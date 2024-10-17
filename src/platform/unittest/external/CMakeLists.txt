@@ -28,7 +28,6 @@ set(SOURCES
 add_executable(msquicplatformtest ${SOURCES})
 
 target_include_directories(msquicplatformtest PRIVATE ${CMAKE_INSTALL_PREFIX}/include)
-target_link_libraries(msquicplatformtest PRIVATE msquic ${MSPLATFORM_LIBRARIES} ${GTEST_LIBRARIES} ws2_32 ntdll ncrypt crypt32 winmm clang_rt.asan_dbg_dynamic-x86_64 clang_rt.asan_dynamic-x86_64)
-# target_link_libraries(msquicplatformtest PUBLIC secur32)
+target_link_libraries(msquicplatformtest PRIVATE msquic ${MSPLATFORM_LIBRARIES} ${GTEST_LIBRARIES} ws2_32 ntdll ncrypt crypt32 winmm clang_rt.asan_dbg_dynamic-x86_64 clang_rt.asan_dynamic-x86_64 secur32)
 target_compile_definitions(msquicplatformtest PRIVATE QUIC_EVENTS_STUB QUIC_LOGS_STUB)
 # add_compile_options(-fsanitize=address)
