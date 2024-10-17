@@ -106,14 +106,14 @@ jobs:
       shell: pwsh
       run: |
         scripts/build.ps1 -Config ${{ inputs.config }} -Platform ${{ inputs.plat }} -Arch ${{ inputs.arch }} -Tls ${{ inputs.tls }} -DisablePerf ${{ inputs.static }} ${{ inputs.clang }} ${{ inputs.systemcrypto }} ${{ inputs.codecheck }} ${{ inputs.sanitize }} ${{ inputs.xdp }} -OneBranch
-        echo ================
-        ($pwd).path
-        dir build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}\obj\${{ inputs.config }}
-        echo -------------------
-        dir build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}\lib\${{ inputs.config }}
-        echo ================
+        # echo ================
+        # ($pwd).path
+        # dir build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}\obj\${{ inputs.config }}
+        # echo -------------------
+        # dir build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}\lib\${{ inputs.config }}
+        # echo ================
         echo ===<<>>>========
-        cmake --install . --config ${{ inputs.config }}
+        cmake --install .
         echo ===<<>>>========
         cmake src/platform/unittest/external -B build_external
         cmake --build build_external
