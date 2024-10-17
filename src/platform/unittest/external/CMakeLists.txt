@@ -26,9 +26,9 @@ FetchContent_MakeAvailable(googletest)
 
 set(SOURCES
     ../main.cpp
-    # ../CryptTest.cpp
-    # ../DataPathTest.cpp
-    # ../PlatformTest.cpp
+    ../CryptTest.cpp
+    ../DataPathTest.cpp
+    ../PlatformTest.cpp
     # ../StorageTest.cpp
     ../TlsTest.cpp
 )
