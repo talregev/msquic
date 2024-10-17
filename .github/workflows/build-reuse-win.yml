@@ -90,6 +90,10 @@ jobs:
         cmake --install build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }} --config ${{ inputs.config }}
         copy build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}\lib\${{ inputs.config }}\* "C:\Program Files\msquic\lib\"
         copy submodules\googletest\googletest\include\gtest "C:\Program Files\msquic\include\"
+        echo ==========
+        dir "C:\Program Files\msquic\include\"
+        dir "C:\Program Files\msquic\lib\"
+        echo ==========
         cmake src/platform/unittest/external -B build_external "-DCMAKE_INSTALL_PREFIX:PATH=C:/Program Files/msquic"
         cmake --build build_external
     - name: Build For Perf
