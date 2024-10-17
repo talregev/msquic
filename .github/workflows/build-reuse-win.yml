@@ -89,6 +89,7 @@ jobs:
         scripts/build.ps1 -Config ${{ inputs.config }} -Platform ${{ inputs.plat }} -Arch ${{ inputs.arch }} -Tls ${{ inputs.tls }} -DisablePerf -DynamicCRT ${{ inputs.sanitize }}
         echo ================
         ($pwd).path
+        dir artifacts\lib
         echo ================
         cmake src/platform/unittest/external -B build
         cmake --build build
