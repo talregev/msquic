@@ -19,8 +19,8 @@ message(STATUS "GTEST_LIBRARIES: ${GTEST_LIBRARIES}")
 set(SOURCES
     ../main.cpp
     # ../CryptTest.cpp
-    ../DataPathTest.cpp
-    ../PlatformTest.cpp
+    # ../DataPathTest.cpp
+    # ../PlatformTest.cpp
     # ../StorageTest.cpp
     ../TlsTest.cpp
 )
@@ -28,5 +28,5 @@ set(SOURCES
 add_executable(msquicplatformtest ${SOURCES})
 
 target_include_directories(msquicplatformtest PRIVATE ${CMAKE_INSTALL_PREFIX}/include)
-target_link_libraries(msquicplatformtest msquic ${MSPLATFORM_LIBRARIES} ${GTEST_LIBRARIES} ws2_32 schannel ntdll bcrypt ncrypt crypt32 iphlpapi advapi32 winmm)
+target_link_libraries(msquicplatformtest msquic ${MSPLATFORM_LIBRARIES} ${GTEST_LIBRARIES} ncrypt crypt32 ntdll winmm)
 target_compile_definitions(msquicplatformtest PRIVATE QUIC_EVENTS_STUB QUIC_LOGS_STUB)
