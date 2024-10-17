@@ -18,8 +18,6 @@ if(QUIC_TLS STREQUAL "openssl" OR  QUIC_TLS STREQUAL "openssl3")
     list(APPEND OTHER_TERGETS OpenSSL)
 endif()
 
-
-
 FetchContent_Declare(
     googletest
     SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../../../submodules/googletest
