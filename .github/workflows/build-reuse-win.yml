@@ -85,15 +85,7 @@ jobs:
     - name: Build For Test
       if: inputs.build == '-Test'
       shell: pwsh
-      run: |
-        scripts/build.ps1 -Config ${{ inputs.config }} -Platform ${{ inputs.plat }} -Arch ${{ inputs.arch }} -Tls ${{ inputs.tls }} -DisablePerf -DynamicCRT ${{ inputs.sanitize }}
-        echo ================
-        ($pwd).path
-        dir artifacts
-        echo ================
-        cmake src/platform/unittest/external -B build
-        cmake --build build
-        cmake --install build
+      run: scripts/build.ps1 -Config ${{ inputs.config }} -Platform ${{ inputs.plat }} -Arch ${{ inputs.arch }} -Tls ${{ inputs.tls }} -DisablePerf -DynamicCRT ${{ inputs.sanitize }}
     - name: Build For Perf
       if: inputs.build == '-Perf'
       shell: pwsh
@@ -101,7 +93,14 @@ jobs:
     - name: Build
       if: inputs.build == ''
       shell: pwsh
-      run: scripts/build.ps1 -Config ${{ inputs.config }} -Platform ${{ inputs.plat }} -Arch ${{ inputs.arch }} -Tls ${{ inputs.tls }} ${{ inputs.sanitize }} ${{ inputs.static }}
+      run: |
+        scripts/build.ps1 -Config ${{ inputs.config }} -Platform ${{ inputs.plat }} -Arch ${{ inputs.arch }} -Tls ${{ inputs.tls }} ${{ inputs.sanitize }} ${{ inputs.static }}
+        echo ================
+        ($pwd).path
+        dir build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}\lib\${{ inputs.config }}
+        echo ================
+        cmake src/platform/unittest/external -B build_external
+        cmake --build build_external
     - name: Filter Build Artifacts
       shell: pwsh
       run: |
