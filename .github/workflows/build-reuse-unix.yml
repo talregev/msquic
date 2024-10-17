@@ -112,11 +112,11 @@ jobs:
         # echo -------------------
         # dir build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}\lib\${{ inputs.config }}
         # echo ================
-        echo ===<<>>>========
-        cmake --install .
-        echo ===<<>>>========
-        cmake src/platform/unittest/external -B build_external
-        cmake --build build_external
+        # echo ===<<>>>========
+        # cmake --install .
+        # echo ===<<>>>========
+        # cmake src/platform/unittest/external -B build_external
+        # cmake --build build_external
     - name: Build For Perf
       if: inputs.build == '-Perf'
       shell: pwsh

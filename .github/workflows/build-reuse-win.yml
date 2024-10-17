@@ -89,12 +89,12 @@ jobs:
         scripts/build.ps1 -Config ${{ inputs.config }} -Platform ${{ inputs.plat }} -Arch ${{ inputs.arch }} -Tls ${{ inputs.tls }} -DisablePerf -DynamicCRT ${{ inputs.sanitize }}
         echo ================
         ($pwd).path
-        dir build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}\obj\${{ inputs.config }}
+        dir build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}
         echo -------------------
-        dir build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}\lib\${{ inputs.config }}
+        dir build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}\
         echo ================
         echo ===<<>>>========
-        cmake --install . --config ${{ inputs.config }}
+        cmake --install build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }} --config ${{ inputs.config }}
         echo ===<<>>>========
         cmake src/platform/unittest/external -B build_external
         cmake --build build_external
