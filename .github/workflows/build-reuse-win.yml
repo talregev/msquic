@@ -95,7 +95,7 @@ jobs:
         dir "C:\Program Files\msquic\lib\"
         echo ==========
         cmake src/platform/unittest/external -G "Visual Studio 17 2022" -A ${{ inputs.arch }} -B build_external "-DCMAKE_INSTALL_PREFIX:PATH=C:/Program Files/msquic"
-        cmake --build build_external --config ${{ inputs.config }}
+        cmake --build build_external --config Release
     - name: Build For Perf
       if: inputs.build == '-Perf'
       shell: pwsh
