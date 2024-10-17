@@ -18,7 +18,7 @@ set(OTHER_TERGETS "")
 
 if(QUIC_TLS STREQUAL "openssl" OR  QUIC_TLS STREQUAL "openssl3")
     # add_library(OpenSSL INTERFACE)
-
+    string(TOLOWER ${CMAKE_SYSTEM_PROCESSOR} SYSTEM_PROCESSOR)
     FetchContent_Declare(
         OpenSSLQuic
         SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../../../submodules
