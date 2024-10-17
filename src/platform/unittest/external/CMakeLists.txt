@@ -34,4 +34,4 @@ target_include_directories(msquicplatformtest PRIVATE ${CMAKE_INSTALL_PREFIX}/in
 target_link_libraries(msquicplatformtest PRIVATE msquic ${MSPLATFORM_LIBRARIES} gtest ws2_32 schannel ntdll bcrypt ncrypt crypt32 iphlpapi advapi32 secur32 userenv onecore winmm clang_rt.asan_dbg_dynamic-x86_64 clang_rt.asan_dynamic-x86_64)
 target_compile_definitions(msquicplatformtest PRIVATE QUIC_EVENTS_STUB QUIC_LOGS_STUB _DISABLE_VECTOR_ANNOTATION _DISABLE_STRING_ANNOTATION)
 target_compile_options(msquicplatformtest PRIVATE /DEBUG)
-target_compile_options(msquicplatformtest PRIVATE /fsanitize=address)
+target_compile_options(msquicplatformtest PRIVATE /fsanitize=unsigned-integer-overflow)
