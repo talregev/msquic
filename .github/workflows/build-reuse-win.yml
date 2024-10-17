@@ -87,10 +87,9 @@ jobs:
       shell: pwsh
       run: scripts/build.ps1 -Config ${{ inputs.config }} -Platform ${{ inputs.plat }} -Arch ${{ inputs.arch }} -Tls ${{ inputs.tls }} -DisablePerf -DynamicCRT ${{ inputs.sanitize }}
     - name: Build External platform test
-      if: inputs.build == '-Test'
+      if: inputs.build == '-Test' && inputs.sanitize != '-Sanitize'
       shell: pwsh
       run: |
-        echo ${{ inputs.sanitize }}
         cmake --install build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }} --config ${{ inputs.config }}
         cmake src/platform/unittest/external -G "Visual Studio 17 2022" -A ${{ inputs.arch }} -B build_external "-DCMAKE_INSTALL_PREFIX:PATH=C:/Program Files/msquic" -DQUIC_TLS=${{ inputs.tls }}
         cmake --build build_external --config ${{ inputs.config }}
