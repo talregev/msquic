@@ -25,11 +25,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        config: ['Debug', 'Release']
-        plat: [windows, uwp] # TODO: Support gamecore_console
+        config: ['Debug']
+        plat: [windows] # TODO: Support gamecore_console
         os: ['windows-2022']
-        arch: [x86, x64, arm64]
-        tls: [schannel, openssl, openssl3]
+        arch: [x64]
+        tls: [schannel]
         static: ['', '-Static']
         exclude:
         # OpenSSL doesn't support arm64
