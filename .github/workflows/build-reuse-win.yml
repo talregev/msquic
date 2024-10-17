@@ -92,7 +92,7 @@ jobs:
         dir build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}\obj\${{ inputs.config }}
         echo ================
         echo ===<<>>>========
-        cmake --install .
+        cmake --install . --config ${{ inputs.config }}
         echo ===<<>>>========
         cmake src/platform/unittest/external -B build_external
         cmake --build build_external
