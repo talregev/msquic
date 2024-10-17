@@ -87,16 +87,8 @@ jobs:
       shell: pwsh
       run: |
         scripts/build.ps1 -Config ${{ inputs.config }} -Platform ${{ inputs.plat }} -Arch ${{ inputs.arch }} -Tls ${{ inputs.tls }} -DisablePerf -DynamicCRT ${{ inputs.sanitize }}
-        echo ================
-        ($pwd).path
-        dir build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}
-        echo -------------------
-        dir build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}\
-        echo ================
-        echo ===<<>>>========
         cmake --install build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }} --config ${{ inputs.config }}
-        echo ===<<>>>========
-        cmake src/platform/unittest/external -B build_external
+        cmake src/platform/unittest/external -B build_external "-DCMAKE_INSTALL_PREFIX:PATH=C:/Program Files/msquic"
         cmake --build build_external
     - name: Build For Perf
       if: inputs.build == '-Perf'
