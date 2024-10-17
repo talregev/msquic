@@ -88,6 +88,7 @@ jobs:
       run: |
         scripts/build.ps1 -Config ${{ inputs.config }} -Platform ${{ inputs.plat }} -Arch ${{ inputs.arch }} -Tls ${{ inputs.tls }} -DisablePerf -DynamicCRT ${{ inputs.sanitize }}
         cmake --install build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }} --config ${{ inputs.config }}
+        copy build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}\lib\* C:\Program Files\msquic\lib\
         cmake src/platform/unittest/external -B build_external "-DCMAKE_INSTALL_PREFIX:PATH=C:/Program Files/msquic"
         cmake --build build_external
     - name: Build For Perf

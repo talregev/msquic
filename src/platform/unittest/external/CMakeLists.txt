@@ -2,9 +2,11 @@
 # Licensed under the MIT License.
 
 find_package(msquic REQUIRED)
-find_package(GTest REQUIRED)
 FIND_LIBRARY(MSPLATFORM_LIBRARIES
              NAMES msquic_platform)
+FIND_LIBRARY(GTEST_LIBRARIES names gtest)
+message(STATUS "MSPLATFORM_LIBRARIES: ${MSPLATFORM_LIBRARIES}")
+message(STATUS "GTEST_LIBRARIES: ${GTEST_LIBRARIES}")
 
 set(SOURCES
     ../main.cpp
