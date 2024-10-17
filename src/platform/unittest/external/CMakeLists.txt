@@ -29,5 +29,5 @@ set(SOURCES
 add_executable(msquicplatformtest ${SOURCES})
 
 target_include_directories(msquicplatformtest PRIVATE ${CMAKE_INSTALL_PREFIX}/include)
-target_link_libraries(msquicplatformtest msquic ${MSPLATFORM_LIBRARIES} ncrypt crypt32 ${GTEST_LIBRARIES})
+target_link_libraries(msquicplatformtest msquic ${MSPLATFORM_LIBRARIES} ncrypt crypt32 ${GTEST_LIBRARIES} ntdll)
 target_compile_definitions(msquicplatformtest PRIVATE QUIC_EVENTS_STUB QUIC_LOGS_STUB)
