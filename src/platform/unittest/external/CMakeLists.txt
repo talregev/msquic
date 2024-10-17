@@ -1,18 +1,18 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
-if ("${CMAKE_HOST_SYSTEM_NAME}" STREQUAL "Windows")
-    cmake_minimum_required(VERSION 3.20)
-else()
-    cmake_minimum_required(VERSION 3.16)
-endif()
+
+cmake_minimum_required(VERSION 3.16)
 
 project(msquic_platform_external)
 
 find_package(msquic REQUIRED)
 find_library(MSPLATFORM_LIBRARIES
              NAMES msquic_platform)
-find_library(GTEST_LIBRARIES names gtest)
+find_library(GTEST_LIBRARIES 
+            NAMES gtest
+            PATHS ${CMAKE_INSTALL_PREFIX}/lib
+            )
 message(STATUS "CMAKE_INSTALL_PREFIX: ${CMAKE_INSTALL_PREFIX}")
 message(STATUS "MSPLATFORM_LIBRARIES: ${MSPLATFORM_LIBRARIES}")
 message(STATUS "GTEST_LIBRARIES: ${GTEST_LIBRARIES}")
