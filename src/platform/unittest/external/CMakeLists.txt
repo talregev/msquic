@@ -8,13 +8,20 @@ project(msquic_platform_external)
 find_package(msquic REQUIRED)
 find_library(MSPLATFORM_LIBRARIES
              NAMES msquic_platform)
-find_library(GTEST_LIBRARIES 
-            NAMES gtest
-            PATHS ${CMAKE_INSTALL_PREFIX}/lib
-            )
+# find_library(GTEST_LIBRARIES 
+#             NAMES gtest
+#             PATHS ${CMAKE_INSTALL_PREFIX}/lib
+#             )
 message(STATUS "CMAKE_INSTALL_PREFIX: ${CMAKE_INSTALL_PREFIX}")
 message(STATUS "MSPLATFORM_LIBRARIES: ${MSPLATFORM_LIBRARIES}")
-message(STATUS "GTEST_LIBRARIES: ${GTEST_LIBRARIES}")
+# message(STATUS "GTEST_LIBRARIES: ${GTEST_LIBRARIES}")
+
+include(FetchContent)
+FetchContent_Declare(
+    googletest
+    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../../../submodules/googletest
+)
+FetchContent_MakeAvailable(googletest)
 
 set(SOURCES
     ../main.cpp
@@ -28,6 +35,6 @@ set(SOURCES
 add_executable(msquicplatformtest ${SOURCES})
 
 target_include_directories(msquicplatformtest PRIVATE ${CMAKE_INSTALL_PREFIX}/include)
-target_link_libraries(msquicplatformtest PRIVATE msquic ${MSPLATFORM_LIBRARIES} ${GTEST_LIBRARIES} ws2_32 schannel ntdll bcrypt ncrypt crypt32 iphlpapi advapi32 secur32 userenv onecore winmm clang_rt.asan_dbg_dynamic-x86_64 clang_rt.asan_dynamic-x86_64)
-target_compile_definitions(msquicplatformtest PRIVATE QUIC_EVENTS_STUB QUIC_LOGS_STUB _DISABLE_VECTOR_ANNOTATION)
+target_link_libraries(msquicplatformtest PRIVATE msquic ${MSPLATFORM_LIBRARIES} gtest ws2_32 schannel ntdll bcrypt ncrypt crypt32 iphlpapi advapi32 secur32 userenv onecore winmm clang_rt.asan_dbg_dynamic-x86_64 clang_rt.asan_dynamic-x86_64)
+target_compile_definitions(msquicplatformtest PRIVATE QUIC_EVENTS_STUB QUIC_LOGS_STUB _DISABLE_VECTOR_ANNOTATION _DISABLE_STRING_ANNOTATION)
 add_compile_options(/DEBUG)
