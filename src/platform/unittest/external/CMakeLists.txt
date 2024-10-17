@@ -1,14 +1,21 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 
+if ("${CMAKE_HOST_SYSTEM_NAME}" STREQUAL "Windows")
+    cmake_minimum_required(VERSION 3.20)
+else()
+    cmake_minimum_required(VERSION 3.16)
+endif()
+
+project(msquic_platform_external)
+
 find_package(msquic REQUIRED)
 find_library(MSPLATFORM_LIBRARIES
              NAMES msquic_platform)
 find_library(GTEST_LIBRARIES names gtest)
+message(STATUS "CMAKE_INSTALL_PREFIX: ${CMAKE_INSTALL_PREFIX}")
 message(STATUS "MSPLATFORM_LIBRARIES: ${MSPLATFORM_LIBRARIES}")
 message(STATUS "GTEST_LIBRARIES: ${GTEST_LIBRARIES}")
-
-
 
 set(SOURCES
     ../main.cpp
@@ -21,19 +28,5 @@ set(SOURCES
 
 add_executable(msquicplatformtest ${SOURCES})
 
-# target_include_directories(msquicplatformtest PRIVATE ${PROJECT_SOURCE_DIR}/src/core)
-
-# set_property(TARGET msquicplatformtest PROPERTY FOLDER "${QUIC_FOLDER_PREFIX}tests")
-# set_property(TARGET msquicplatformtest APPEND PROPERTY BUILD_RPATH "$ORIGIN")
-
 target_link_libraries(msquicplatformtest msquic ${MSPLATFORM_LIBRARIES} ncrypt crypt32 ${GTEST_LIBRARIES})
 
-# if (BUILD_SHARED_LIBS)
-#     target_link_libraries(msquicplatformtest ${MSPLATFORM_LIBRARIES} ncrypt crypt32)
-# endif()
-
-# target_link_libraries(msquicplatformtest inc gtest warnings logging base_link)
-
-# add_test(NAME msquicplatformtest
-#          COMMAND msquicplatformtest
-#          WORKING_DIRECTORY ${QUIC_OUTPUT_DIR})
