@@ -91,7 +91,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@eef61447b9ff4aafe5dcd4e0bbf5d482be7e7871
       with:
-        repository: microsoft/msquic
+        repository: talregev/msquic
         ref: ${{ inputs.ref }}
     - name: Set ownership
       if: inputs.plat == 'linux'
@@ -104,7 +104,19 @@ jobs:
     - name: Build For Test
       if: inputs.build == '-Test'
       shell: pwsh
-      run: scripts/build.ps1 -Config ${{ inputs.config }} -Platform ${{ inputs.plat }} -Arch ${{ inputs.arch }} -Tls ${{ inputs.tls }} -DisablePerf ${{ inputs.static }} ${{ inputs.clang }} ${{ inputs.systemcrypto }} ${{ inputs.codecheck }} ${{ inputs.sanitize }} ${{ inputs.xdp }} -OneBranch
+      run: |
+        scripts/build.ps1 -Config ${{ inputs.config }} -Platform ${{ inputs.plat }} -Arch ${{ inputs.arch }} -Tls ${{ inputs.tls }} -DisablePerf ${{ inputs.static }} ${{ inputs.clang }} ${{ inputs.systemcrypto }} ${{ inputs.codecheck }} ${{ inputs.sanitize }} ${{ inputs.xdp }} -OneBranch
+        echo ================
+        ($pwd).path
+        dir build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}\obj\${{ inputs.config }}
+        echo -------------------
+        dir build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}\lib\${{ inputs.config }}
+        echo ================
+        echo ===<<>>>========
+        cmake --install . --config ${{ inputs.config }}
+        echo ===<<>>>========
+        cmake src/platform/unittest/external -B build_external
+        cmake --build build_external
     - name: Build For Perf
       if: inputs.build == '-Perf'
       shell: pwsh

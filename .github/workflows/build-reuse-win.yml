@@ -90,6 +90,8 @@ jobs:
         echo ================
         ($pwd).path
         dir build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}\obj\${{ inputs.config }}
+        echo -------------------
+        dir build\${{ inputs.plat }}\${{ inputs.arch }}_${{ inputs.tls }}\lib\${{ inputs.config }}
         echo ================
         echo ===<<>>>========
         cmake --install . --config ${{ inputs.config }}
