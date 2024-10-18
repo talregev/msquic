@@ -42,9 +42,9 @@ target_compile_definitions(msquicplatformtest PRIVATE QUIC_EVENTS_STUB QUIC_LOGS
 
 if(SANITIZERS STREQUAL "-Sanitize")
     message(STATUS "-Sanitize")
-    target_compile_options(gtest PRIVATE /fsanitize=address)
-    target_compile_options(gtest_main PRIVATE /fsanitize=address)
-    target_compile_definitions(msquicplatformtest PRIVATE /fsanitize=address)
+    target_compile_options(gtest PRIVATE /fsanitize=address -ggdb3)
+    target_compile_options(gtest_main PRIVATE /fsanitize=address -ggdb3)
+    target_compile_definitions(msquicplatformtest PRIVATE /fsanitize=address -ggdb3)
     target_compile_definitions(gtest PRIVATE _DISABLE_VECTOR_ANNOTATION)
     target_compile_definitions(gtest_main PRIVATE _DISABLE_VECTOR_ANNOTATION)
 endif()
