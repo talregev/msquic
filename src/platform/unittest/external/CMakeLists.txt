@@ -24,6 +24,13 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
+if(SANITIZERS STREQUAL "-Sanitize")
+    target_compile_options(gtest PRIVATE /fsanitize=address)
+    target_compile_options(gtest_main PRIVATE /fsanitize=address)
+    target_compile_definitions(gtest PRIVATE _DISABLE_VECTOR_ANNOTATION)
+    target_compile_definitions(gtest_main PRIVATE _DISABLE_VECTOR_ANNOTATION)
+endif()
+
 set(SOURCES
     ../main.cpp
     ../CryptTest.cpp
