@@ -69,10 +69,7 @@ jobs:
     runs-on: ${{ inputs.os }}
     steps:
     - name: Checkout repository
-      uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
-      with:
-        repository: microsoft/msquic
-        ref: ${{ inputs.ref }}
+      uses: actions/checkout@v4
     - name: Install Perl
       uses: shogo82148/actions-setup-perl@f551dafcc94572adc179bbddbb409b3ada8f8ff5
       with:
