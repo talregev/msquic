@@ -25,19 +25,16 @@ set(SOURCES
     ../TlsTest.cpp
 )
 
+get_property(importTargets DIRECTORY "${CMAKE_SOURCE_DIR}" PROPERTY IMPORTED_TARGETS)
+message(STATUS "importTargets: ${importTargets}")
+
 add_executable(msquicplatformtest ${SOURCES})
 target_include_directories(msquicplatformtest PRIVATE ${CMAKE_INSTALL_PREFIX}/include)
 target_link_libraries(msquicplatformtest PRIVATE gtest msquic::msquic msquic::msquic_platform ws2_32 ntdll ncrypt crypt32 iphlpapi)
-get_target_property(defs_inc msquic::inc COMPILE_DEFINITIONS)
-message(STATUS "defs_inc: ${defs_inc}")
-
-get_property(allTargets DIRECTORY "${CMAKE_SOURCE_DIR}" PROPERTY BUILDSYSTEM_TARGETS)
-get_property(importTargets DIRECTORY "${CMAKE_SOURCE_DIR}" PROPERTY IMPORTED_TARGETS)
-message(STATUS "allTargets: ${allTargets}")
-message(STATUS "importTargets: ${importTargets}")
-
-
-remove_definitions(QUIC_EVENTS_STDOUT)
 target_compile_definitions(msquicplatformtest PRIVATE QUIC_EVENTS_STUB _DISABLE_STRING_ANNOTATION)
+
 get_target_property(defs_after msquicplatformtest COMPILE_DEFINITIONS)
 message(STATUS "defs_after: ${defs_after}")
+
+get_directory_property(DirCompile DIRECTORY ${CMAKE_SOURCE_DIR} COMPILE_DEFINITIONS )
+message(STATUS "DirCompile: ${DirCompile}")
