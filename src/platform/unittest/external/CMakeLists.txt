@@ -25,19 +25,19 @@ set(SOURCES
     ../TlsTest.cpp
 )
 
-get_property(importTargets DIRECTORY "${CMAKE_SOURCE_DIR}" PROPERTY IMPORTED_TARGETS)
-message(STATUS "importTargets: ${importTargets}")
+# get_property(importTargets DIRECTORY "${CMAKE_SOURCE_DIR}" PROPERTY IMPORTED_TARGETS)
+# message(STATUS "importTargets: ${importTargets}")
 
-foreach(target ${importTargets})
-    message(STATUS "target: ${target}")
-    get_target_property(defs ${target} INTERFACE_COMPILE_DEFINITIONS)
-    message(STATUS "defs: ${defs}")
-endforeach()
+# foreach(target ${importTargets})
+#     message(STATUS "target: ${target}")
+#     get_target_property(defs ${target} INTERFACE_COMPILE_DEFINITIONS)
+#     message(STATUS "defs: ${defs}")
+# endforeach()
 
 get_target_property(defs msquic::inc INTERFACE_COMPILE_DEFINITIONS)
 message(STATUS "msquic::inc defs: ${defs}")
-list(FILTER defs EXCLUDE REGEX [[^QUIC_EVENTS_MANIFEST_ETW$]])
-set_target_properties(msquic::inc PROPERTIES  INTERFACE_COMPILE_DEFINITIONS ${defs})
+list(FILTER defs EXCLUDE REGEX [[^NOMINMAX$]])
+set_target_properties(msquic::inc PROPERTIES  INTERFACE_COMPILE_DEFINITIONS "${defs}")
 
 get_target_property(defs msquic::inc INTERFACE_COMPILE_DEFINITIONS)
 message(STATUS "msquic::inc defs after remove: ${defs}")
