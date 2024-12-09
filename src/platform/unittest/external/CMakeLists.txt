@@ -36,8 +36,5 @@ target_compile_definitions(msquicplatformtest PRIVATE QUIC_EVENTS_STUB _DISABLE_
 get_target_property(defs_after msquicplatformtest COMPILE_DEFINITIONS)
 message(STATUS "defs_after: ${defs_after}")
 
-get_target_property(defs_after msquicplatformtest INTERFACE_COMPILE_DEFINITIONS)
+get_target_property(defs_after msquic::inc INTERFACE_COMPILE_DEFINITIONS)
 message(STATUS "defs_after: ${defs_after}")
-
-get_property(dirCompile DIRECTORY "${CMAKE_SOURCE_DIR}" PROPERTY INTERFACE_COMPILE_DEFINITIONS)
-message(STATUS "dirCompile: ${DirCompile}")
