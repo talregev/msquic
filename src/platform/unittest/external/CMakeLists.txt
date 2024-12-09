@@ -45,3 +45,5 @@ get_target_property(defs msquic::inc INTERFACE_COMPILE_DEFINITIONS)
 message(STATUS "defs: ${defs}")
 get_target_property(defs msquicplatformtest INTERFACE_COMPILE_DEFINITIONS)
 message(STATUS "defs: ${defs}")
+
+remove_definitions(-DQUIC_EVENTS_MANIFEST_ETW)
