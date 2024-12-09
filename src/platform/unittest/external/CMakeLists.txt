@@ -25,23 +25,13 @@ set(SOURCES
     ../TlsTest.cpp
 )
 
-# get_property(importTargets DIRECTORY "${CMAKE_SOURCE_DIR}" PROPERTY IMPORTED_TARGETS)
-# message(STATUS "importTargets: ${importTargets}")
-
-# foreach(target ${importTargets})
-#     message(STATUS "target: ${target}")
-#     get_target_property(defs ${target} INTERFACE_COMPILE_DEFINITIONS)
-#     message(STATUS "defs: ${defs}")
-# endforeach()
-
+# Remove QUIC_EVENTS_MANIFEST_ETW and QUIC_LOGS_MANIFEST_ETW definitions. These definitions for internal use in msquic
 get_target_property(defs msquic::inc INTERFACE_COMPILE_DEFINITIONS)
-message(STATUS "msquic::inc defs: ${defs}")
-list(FILTER defs EXCLUDE REGEX [[^QUIC_EVENTS_MANIFEST_ETW$]])
-list(FILTER defs EXCLUDE REGEX [[^QUIC_LOGS_MANIFEST_ETW$]])
+list(FILTER defs EXCLUDE REGEX "^(QUIC_EVENTS_MANIFEST_ETW|QUIC_LOGS_MANIFEST_ETW)$")
 set_target_properties(msquic::inc PROPERTIES  INTERFACE_COMPILE_DEFINITIONS "${defs}")
 
 get_target_property(defs msquic::inc INTERFACE_COMPILE_DEFINITIONS)
-message(STATUS "msquic::inc defs after remove: ${defs}")
+message(STATUS "defs ${defs}")
 
 add_executable(msquicplatformtest ${SOURCES})
 target_include_directories(msquicplatformtest PRIVATE ${CMAKE_INSTALL_PREFIX}/include)
