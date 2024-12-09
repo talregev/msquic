@@ -36,7 +36,7 @@ set(SOURCES
 
 get_target_property(defs msquic::inc INTERFACE_COMPILE_DEFINITIONS)
 message(STATUS "msquic::inc defs: ${defs}")
-list(FILTER defs EXCLUDE REGEX [[^NOMINMAX$]])
+list(FILTER defs EXCLUDE REGEX [[^QUIC_EVENTS_MANIFEST_ETW$]])
 set_target_properties(msquic::inc PROPERTIES  INTERFACE_COMPILE_DEFINITIONS "${defs}")
 
 get_target_property(defs msquic::inc INTERFACE_COMPILE_DEFINITIONS)
