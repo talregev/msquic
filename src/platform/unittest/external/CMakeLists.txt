@@ -47,3 +47,5 @@ target_compile_definitions(msquicplatformtest PRIVATE QUIC_EVENTS_STUB _DISABLE_
 # message(STATUS "defs: ${defs}")
 
 remove_definitions(-DQUIC_EVENTS_MANIFEST_ETW)
+remove_definitions(QUIC_EVENTS_MANIFEST_ETW)
+
