@@ -87,3 +87,17 @@ EXPORTS
     CxPlatDataPathIsPaddingPreferred
     CxPlatSendDataFreeBuffer
     CxPlatSendDataIsFull
+    CxPlatSystemUnload
+    CxPlatThreadDelete
+    CxPlatThreadWait
+    CxPlatGetAbsoluteTime
+    CxPlatHpKeyCreate
+    CxPlatHpKeyFree
+    CxPlatSocketCreateTcpListener
+    CxPlatSocketCreateTcp
+    CxPlatSocketRawSocketAvailable
+    CxPlatCurThreadID
+    CxPlatSleep
+    CxPlatTimeUs64
+    CxPlatFreeSelfSignedCertCaFile
+    CxPlatGetSelfSignedCertCaCertificateFileName
