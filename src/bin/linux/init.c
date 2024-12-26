@@ -9,7 +9,14 @@ Abstract:
 
 --*/
 
+#define QUIC_TEST_APIS 1
 #include "quic_platform.h"
+
+void MsQuickChainLoadPlatformSymbolsNoOp()
+{
+    QUIC_CREDENTIAL_CONFIG* SelfSignedCertParams = (QUIC_CREDENTIAL_CONFIG*)CxPlatGetSelfSignedCert(CXPLAT_SELF_SIGN_CERT_USER, FALSE, NULL);
+    CxPlatFreeSelfSignedCert(SelfSignedCertParams);
+}
 
 void
 MsQuicLibraryLoad(

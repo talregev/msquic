@@ -1,5 +1,9 @@
 msquic
 {
   global: MsQuicOpenVersion; MsQuicClose;
+          CxPlatGetSelfSignedCert;
+          CxPlatFreeSelfSignedCert;
+          CxPlatLogAssert;
+          quic_bugcheck;
   local: *;
 };

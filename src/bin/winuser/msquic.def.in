@@ -3,3 +3,6 @@ LIBRARY @QUIC_LIBRARY_NAME@
 EXPORTS
     MsQuicOpenVersion
     MsQuicClose
+    CxPlatGetSelfSignedCert
+    CxPlatFreeSelfSignedCert
+    CxPlatLogAssert

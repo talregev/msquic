@@ -1,2 +1,6 @@
 _MsQuicOpenVersion
 _MsQuicClose
+_CxPlatGetSelfSignedCert
+_CxPlatFreeSelfSignedCert
+_CxPlatLogAssert
+_quic_bugcheck
