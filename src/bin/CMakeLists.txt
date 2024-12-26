@@ -251,35 +251,20 @@ elseif (CX_PLATFORM STREQUAL "darwin")
         PROPERTIES LINK_FLAGS "-exported_symbols_list \"${CMAKE_CURRENT_SOURCE_DIR}/darwin/exports.txt\"")
 endif()
 
-include(GNUInstallDirs)
-
 file(GLOB PUBLIC_HEADERS "../inc/*.h" "../inc/*.hpp")
 
-if(QUIC_TLS STREQUAL "openssl" OR  QUIC_TLS STREQUAL "openssl3")
-    list(APPEND OTHER_TARGETS OpenSSL OpenSSLQuic)
-endif()
+install(TARGETS msquic EXPORT msquic
+RUNTIME DESTINATION bin
+ARCHIVE DESTINATION lib
+LIBRARY DESTINATION lib)
 
-if(WIN32)
-    list(APPEND OTHER_TARGETS MsQuicEtw_Header)
-endif()
-
-if(BUILD_SHARED_LIBS)
-  install(TARGETS msquic EXPORT msquic
-    RUNTIME DESTINATION bin
-    ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib)
-else()
-  install(FILES ${QUIC_STATIC_LIBRARY} DESTINATION lib)
-endif()
 install(FILES ${PUBLIC_HEADERS} DESTINATION include)
 
 configure_file(msquic-config.cmake.in ${CMAKE_BINARY_DIR}/msquic-config.cmake)
 
 install(FILES ${CMAKE_BINARY_DIR}/msquic-config.cmake DESTINATION share/msquic)
 
-if(BUILD_SHARED_LIBS)
-    install(EXPORT msquic NAMESPACE msquic:: DESTINATION share/msquic)
-endif()
+install(EXPORT msquic NAMESPACE msquic:: DESTINATION share/msquic)
 
 if (MSVC AND NOT QUIC_ENABLE_SANITIZERS AND BUILD_SHARED_LIBS)
     target_compile_options(msquic PRIVATE /analyze)
