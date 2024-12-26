@@ -253,10 +253,14 @@ endif()
 
 file(GLOB PUBLIC_HEADERS "../inc/*.h" "../inc/*.hpp")
 
-install(TARGETS msquic EXPORT msquic
-RUNTIME DESTINATION bin
-ARCHIVE DESTINATION lib
-LIBRARY DESTINATION lib)
+if(BUILD_SHARED_LIBS)
+    install(TARGETS msquic EXPORT msquic
+    RUNTIME DESTINATION bin
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib)
+else()
+  install(FILES ${QUIC_STATIC_LIBRARY} DESTINATION lib)
+endif()
 
 install(FILES ${PUBLIC_HEADERS} DESTINATION include)
 
