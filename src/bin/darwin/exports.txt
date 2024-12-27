@@ -2,7 +2,6 @@ _MsQuicOpenVersion
 _MsQuicClose
 _CxPlatGetSelfSignedCert
 _CxPlatFreeSelfSignedCert
-_CxPlatLogAssert
 _quic_bugcheck
 _CxPlatThreadCreate
 _CxPlatSystemLoad
@@ -30,7 +29,6 @@ _CxPlatFree
 _CxPlatDataPathInitialize
 _CxPlatDataPathUninitialize
 _CxPlatDataPathGetSupportedFeatures
-_CxPlatDataPathResolveAddress
 _CxPlatSocketCreateUdp
 _CxPlatSocketCreateTcp
 _CxPlatSocketCreateTcpListener
