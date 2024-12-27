@@ -57,3 +57,38 @@ EXPORTS
     CxPlatPerfFreq
     CxPlatProcessorCount
     CxPlatTlsTPHeaderSize
+    CxPlatToeplitzHashInitialize
+    CxPlatSetAllocFailDenominator
+    CxPlatDataPathUpdateConfig
+    CxPlatStorageOpen
+    CxPlatStorageClose
+    CxPlatStorageReadValue
+    CxPlatTlsGetProvider
+    CxPlatTlsParamSet
+    CxPlatTotalMemory
+    CxPlatProcessorGroupInfo
+    QuicTraceRundownCallback
+    CxPlatTlsUpdateHkdfLabels
+    CxPlatGetAllocFailDenominator
+    CxPlatHashtableInitialize
+    CxPlatHashtableUninitialize
+    CxPlatHashtableInsert
+    CxPlatHashtableRemove
+    CxPlatHashtableLookup
+    CxPlatHashtableLookupNext
+    CxPlatSendDataFree
+    CxPlatTlsSecConfigSetTicketKeys
+    CxPlatSecConfigParamSet
+    CxPlatSocketGetLocalMtu
+    CxPlatUpdateRoute
+    QuicCopyRouteInfo
+    QuicTlsPopulateOffloadKeys
+    CxPlatHashtableEnumerateBegin
+    CxPlatHashtableEnumerateNext
+    CxPlatHashtableEnumerateEnd
+    CxPlatToeplitzHashCompute
+    CxPlatAddExecutionContext
+    CxPlatWakeExecutionContext
+    CxPlatDataPathIsPaddingPreferred
+    CxPlatSendDataFreeBuffer
+    CxPlatSendDataIsFull
